@@ -1,11 +1,20 @@
 #!/usr/bin/python3
 """This module defines a base class for all models in our hbnb clone"""
+from email.policy import default
 import uuid
 from datetime import datetime
+from xmlrpc.client import DateTime
+import sqlalchemy
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String
+Base = declarative_base()
 
 
 class BaseModel:
     """A base class for all hbnb models"""
+
+    id = Column(Integer(60), primary_key=True, nullable=False)
+    created_at = Column(DateTime=default,)
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
         if not kwargs:
